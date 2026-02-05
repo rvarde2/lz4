@@ -96,11 +96,12 @@ void benchmark(char *workload_buffer, int workload_length){
         decompressed_size= LZ4_decompress_safe(compression_buffer,
                 decompression_buffer,compressed_size, workload_length);
         hdr_record_value(decompress_hist,rdtsc()-before_decompression);
-
-        if(workload_length!=decompressed_size){
+        
+        if((decompressed_size!=-1) &&  (workload_length!=decompressed_size)){
             printf("Mismatch: workload_length:%d, decompressed_size:%d\n",
                     workload_length, decompressed_size);
         } 
+        
         memset(compression_buffer, 0, workload_length);
         memset(decompression_buffer, 0, workload_length);
         samples_created++;
