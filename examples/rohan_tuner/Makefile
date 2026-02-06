@@ -34,7 +34,7 @@ $(EXEC): $(OBJECTS)
 # Compile source files into object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -O3 -Wall -c $< -o $@
+	$(CC) -O3 -DLZ4_MEMORY_USAGE=12 -Wall -c $< -o $@
 
 # Clean up
 clean:
